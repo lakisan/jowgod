@@ -11,7 +11,7 @@
 ## Clone esse projeto
 
 ```bash
-> git clone https://github.com/thothdeus/MayBot
+> git clone https://github.com/thothdeus/MayApi
 ```
 
 ## Instale as dependências:
@@ -19,7 +19,7 @@ Antes de executar o comando abaixo, certifique-se de estar no diretório do proj
 você acabou de clonar!!
 
 ```bash
-> cd MayBot
+> cd MayApi
 > bash install.sh
 ```
 
@@ -51,20 +51,6 @@ const simih = async (text) => {
 	}
 }
 ```
-
-## Funções
-
-| May |               Bot          |
-| :-----------: | :--------------------------------: |
-|       ✅       | Sticker         |
-|       ✅       | Baixa música    |
-|       ✅       | Puxa dados      |
-|       ✅       | Simi sem limite |
-|       ✅       | Geradores       |
-|       ✅       | Livraria        |
-
-| E muito mais que você só vai descobrir quando usar|
-| :--------------------------------------------: |
 
 ## Agradecimento
 * <a href="https://github.com/adiwajshing/Baileys"><img alt="GitHub" src="https://img.shields.io/badge/adiwajshing/Baileys%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
