@@ -58,8 +58,8 @@ const simih = async (text) => {
 *  <a href="https://github.com/KillovSky"><img alt="GitHub" src="https://img.shields.io/badge/KillovSky%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
 *  <a href="https://github.com/ianmsfvenom"><img alt="GitHub" src="https://img.shields.io/badge/ianmsfvenom%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
 
-## Groupo
-* <a href="https://chat.whatsapp.com/KLfjq8AK4Jz62Pqfz5sv0v"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
+## Grupo
+* <a href="https://chat.whatsapp.com/KLfjq8AK4Jz62Pqfz5sv0v"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp%20Grupo-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
 
 ### Donate
 * <a href="wa.me/+5511930758170"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
