@@ -56,6 +56,7 @@ const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
 prefix = setting.prefix
 apilol = setting.apilol
 apitobz = setting.apitobz
+apizeks = setting.apizeks
 blocked = []
 ban = []
 
