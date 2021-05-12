@@ -1,6 +1,6 @@
 exports.wpp = (pushname) => {
    return `
-「 *May Bot* 」
+「 *zapedito* 」
 「 Olá ${pushname}
   ❏ Prefixo: ${prefix} 」
 「 MENUS 」
@@ -27,6 +27,6 @@ exports.wpp = (pushname) => {
   ❏ ${prefix}credits
    ➰ O nome já fala
 「 ${pushname} qualquer bug:
-  ❏ SAC: wa.me/+5511930758170 」
+  ❏ SAC: wa.me/+558496668284 」
 `
 }
