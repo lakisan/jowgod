@@ -30,7 +30,7 @@ const help = (prefix) => {
    ➰ O nome já fala
 
 「 ${pushname} qualquer bug:
-  ❏ SAC: wa.me/+5511930758170 」`
+  ❏ SAC: wa.me/+558496668284 」`
 }
 
 exports.help = help
