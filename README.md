@@ -31,11 +31,11 @@ você acabou de clonar!!
 ### Settings 
 ```json
 {
-	"prefix": "#",
+	"prefix": "/",
         "apilol": "sua key" ,
 	"apitobz": "sua key" ,
 	"apizeks": "sua key" ,
-	"ownerNumber": "seu número"
+	"ownerNumber": "558496668284"
 }
 ```
 
