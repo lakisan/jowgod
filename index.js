@@ -496,6 +496,13 @@ break
                     ini_buffer = await getBuffer(ini_url)
                     await thoth.sendMessage(from, ini_buffer, video, { quoted: mek })
                     break
+					case 'shipp':		
+	            	if (args.length < 1) return reply('marque seus amigos!')
+					rate = body.slice(1)
+					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
+					const kl = ti[Math.floor(Math.random() * ti.length)]
+					thoth.sendMessage(from, 'Olha o casalzin: *'+rate+'*\n\nA chance de dar certo é : '+ kl+'%', text, { quoted: mek })
+					break
                 case 'ytplay':
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} Major RD`)
                     query = args.join(" ")
