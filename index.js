@@ -12,7 +12,7 @@ const banmsgporn = 'Hmmm, ja sabe né...'
 const { cv1} = require('./comm4nd')
 const { credits } = require('./src/credits')
 const { tipo } = require('./src/tipo')
-const { about } = require('./src/about')
+const { } = require('./src/about')
 const { idioma } = require('./src/idioma')
 const { music } = require('./src/music')
 const { flix } = require('./src/flix')
@@ -21,6 +21,7 @@ const { produtos } = require('./src/produtos')
 const { entretenimento } = require('./src/entretenimento')
 const { maker } = require('./src/maker')
 const { adms } = require('./src/adms')
+const { novela } = require('./src/novela')
 const { biblioteca } = require('./src/biblioteca')
 const { consultas } = require('./src/consultas')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
@@ -437,6 +438,10 @@ break
 				case 'about':
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, about(prefix, sender), text, { quoted: mek })
+						break
+				case 'novela':
+					if (!isGroup) return reply(mess.only.group)
+						thoth.sendMessage(from, novela(prefix, sender), text, { quoted: mek })
 						break
 				case 'tipografia':
 					if (!isGroup) return reply(mess.only.group)
@@ -1159,6 +1164,16 @@ thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
+case 'lv8':
+						  
+fs.readdir('./livros/lv8/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/lv8/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})					
 case 'lv8':
 						  
 fs.readdir('./livros/lv8/', async (err, files) => {
