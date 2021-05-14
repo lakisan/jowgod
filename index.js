@@ -1192,6 +1192,18 @@ thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
+case 'lv11':
+						  
+fs.readdir('./livros/lv11/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/lv11/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+
 case 'lyric':
 						  
 fs.readdir('./banco/tipo/', async (err, files) => {
