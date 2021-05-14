@@ -1,9 +1,7 @@
 const novela = (prefix, sender) => {
 	return `
-「 Novelas em pdf
-  ❏ ${prefix}lvl1 (Moby Dick - Herman Melville)
-  ❏ ${prefix}lvl2 (Kamasutra - Alicia Galloti)
-  ❏ ${prefix}lvl3 (O Alquimista - Paulo Coelho)
-}
+「 BIBLIOTECA 
+   ❏ ${prefix}lv1 (Mitologia Nórdica)   
+   ❏ ${prefix}lv2 (Eu tenho sérios poemas mentais)
 
 exports.novela = novela
