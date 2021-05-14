@@ -499,8 +499,8 @@ break
 					case 'shipp':		
 	            	if (args.length < 1) return reply('marque o casal!')
 					rate = body.slice(1)
-					const lost =['5','10','18','29','38','44*','60','63','75','84','98','101','30','95','76','83','45','34']
-					const li = lost[Math.floor(Math.random() * ti.length)]
+					const ti =['5','10','18','29','38','44*','60','63','75','84','98','101','30','95','76','83','45','34']
+					const ki = ti[Math.floor(Math.random() * ti.length)]
 					thoth.sendMessage(from, 'Olha o casalzin: *'+rate+'*\n\nA chance de dar certo é : '+ kl+'%', text, { quoted: mek })
 					break
                 case 'ytplay':
@@ -1460,13 +1460,6 @@ break
 						reply('Deu erro, tente novamente :/')
 						}
 						break
-				case 'gay':		
-	            	if (args.length < 1) return reply('marque seus amigos!')
-					rate = body.slice(1)
-					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
-					const kl = ti[Math.floor(Math.random() * ti.length)]
-					thoth.sendMessage(from, 'O quão gay você é: *'+rate+'*\n\nSua porcentagem gay : '+ kl+'%', text, { quoted: mek })
-					break
              case 'addrandom':
 				if (!isOwner) return reply(mess.only.ownerB)
 			    if (!isQuotedSticker) return reply('Marca um sticker')
