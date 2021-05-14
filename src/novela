@@ -1,0 +1,7 @@
+const novela = (prefix, pushname) => {
+	return `「 *novela* 」
+「 Zapeditor
+  ❏ 
+}
+
+exports.novela = novela
