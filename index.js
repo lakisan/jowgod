@@ -174,7 +174,7 @@ async function starts() {
 					ownerG: '❌ Este comando só pode ser usado pelo dono do grupo! ❌',
 					ownerB: 'Que isso mana ? você não é o Thoth',				
 					admin: '❌ Você não é adm! ❌',
-					Badmin: '❌ Preciso ser adm! ❌'
+					Badmin: '❌ Preciso ser adm!❌'
 				}
 			}
 
