@@ -447,6 +447,22 @@ break
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, novela(prefix, sender), text, { quoted: mek })
 						break
+				case 'suspense':
+					if (!isGroup) return reply(mess.only.group)
+						thoth.sendMessage(from, suspense(prefix, sender), text, { quoted: mek })
+						break
+				case 'romance':
+					if (!isGroup) return reply(mess.only.group)
+						thoth.sendMessage(from, romance(prefix, sender), text, { quoted: mek })
+						break
+				case 'horror':
+					if (!isGroup) return reply(mess.only.group)
+						thoth.sendMessage(from, horror(prefix, sender), text, { quoted: mek })
+						break
+				case 'poesia':
+					if (!isGroup) return reply(mess.only.group)
+						thoth.sendMessage(from, poesia(prefix, sender), text, { quoted: mek })
+						break
 				case 'tipografia':
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, tipo(prefix, sender), text, { quoted: mek })
@@ -581,7 +597,7 @@ break
 							})
 							.on('end', function () {
 								console.log('Finish')
-								exec(`webpmux -set exif ${addMetadata('MayBOT', authorname)} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata('JOWGOD', authorname)} ${ran} -o ${ran}`, async (error) => {
 									if (error) return reply(mess.error.stick)
 									thoth.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)
