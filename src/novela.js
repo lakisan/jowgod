@@ -1,4 +1,4 @@
-const flix = (prefix, pushname) => {
+const novela = (prefix, pushname) => {
 	return `「 *Livros* 」
 「 Novelas
    ❏ ${prefix}lv1 (Mitologia Nórdica)   
