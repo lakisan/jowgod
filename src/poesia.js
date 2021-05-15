@@ -1,6 +1,6 @@
 const poesia = (prefix, pushname) => {
 	return `「 *Livros* 」
-「 Romance
+「 Poesia
    ❏ ${prefix}lv10 (Eu Tenho Sérios Poemas Mentais - Pedro Salomão)
    ❏ ${prefix}lv11 (O Fim em Doses Homeopáticas)`
 }
