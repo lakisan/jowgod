@@ -1109,116 +1109,116 @@ thoth.sendMessage(from, `Tipografia salva!`, MessageType.text, { quoted: mek })
 break
 case 'lv1':
 						  
-fs.readdir('./livros/mn/', async (err, files) => {
+fs.readdir('./livros/mobydick/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/mn/${imagem}`)
+dua = fs.readFileSync(`./livros/mobydick/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv2':
 						  
-fs.readdir('./livros/pm/', async (err, files) => {
+fs.readdir('./livros/oalquimista/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/pm/${imagem}`)
+dua = fs.readFileSync(`./livros/oalquimista/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv3':
 						  
-fs.readdir('./livros/tcd3/', async (err, files) => {
+fs.readdir('./livros/kamasutra/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/tcd3/${imagem}`)
+dua = fs.readFileSync(`./livros/kamasutra/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv4':
 						  
-fs.readdir('./livros/ln/', async (err, files) => {
+fs.readdir('./livros/ocodigodavinci/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/ln/${imagem}`)
+dua = fs.readFileSync(`./livros/ocodigodavinci/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv5':
 						  
-fs.readdir('./livros/lv5/', async (err, files) => {
+fs.readdir('./livros/mitologianordica/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/lv5/${imagem}`)
+dua = fs.readFileSync(`./livros/mitologianordica/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv6':
 						  
-fs.readdir('./livros/os/', async (err, files) => {
+fs.readdir('./livros/jogadorn1/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/os/${imagem}`)
+dua = fs.readFileSync(`./livros/jogadorn1/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv7':
 						  
-fs.readdir('./livros/lv7/', async (err, files) => {
+fs.readdir('./livros/vermelhobrancoesangueazul/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/lv7/${imagem}`)
+dua = fs.readFileSync(`./livros/vermelhobrancoesangueazul/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv8':
 						  
-fs.readdir('./livros/lv8/', async (err, files) => {
+fs.readdir('./livros/esmeralda/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/lv8/${imagem}`)
+dua = fs.readFileSync(`./livros/esmeralda/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })					
-case 'lv8':
-						  
-fs.readdir('./livros/lv8/', async (err, files) => {
-let imagens = files.filter(f => f.split('.')[1]== 'pdf')
-let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
-						
-dua = fs.readFileSync(`./livros/lv8/${imagem}`)
-thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
-await limitAdd(sender)
-})
-break
 case 'lv9':
 						  
-fs.readdir('./livros/lv9/', async (err, files) => {
+fs.readdir('./livros/lugarnenhum/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/lv9/${imagem}`)
+dua = fs.readFileSync(`./livros/lugarnenhum/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
 case 'lv10':
 						  
-fs.readdir('./livros/coraline/', async (err, files) => {
+fs.readdir('./livros/eutenhoseriospoemasmentais/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/eutenhoseriospoemasmentais/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv11':
+						  
+fs.readdir('./livros/ofimemdoseshomeopaticas/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
@@ -1227,13 +1227,13 @@ thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
 break
-case 'lv11':
+case 'lv12':
 						  
-fs.readdir('./livros/lv11/', async (err, files) => {
+fs.readdir('./livros/coraline/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/lv11/${imagem}`)
+dua = fs.readFileSync(`./livros/coraline/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
