@@ -528,6 +528,17 @@ break
 					const kl = ti[Math.floor(Math.random() * ti.length)]
 					thoth.sendMessage(from, 'Olha o casalzin: *'+rate+'*\n\nA chance de dar certo é : '+ kl+'%', text, { quoted: mek })
 					break
+		   case 'semoji':
+                    if (args.length == 0) return reply(`Exemplo: ${prefix + command} 😭`)
+                    emoji = args[0]
+                    try {
+                        emoji = encodeURI(emoji[0])
+                    } catch {
+                        emoji = encodeURI(emoji)
+                    }
+                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=847de7716f17a51eeba4235c`)
+                    thoth.sendMessage(from, ini_buffer, sticker, { quoted: mek})
+                    break
                 case 'ytplay':
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} Major RD`)
                     query = args.join(" ")
@@ -772,7 +783,7 @@ break
 case 'kiss':
 ranp = getRandom('.gif')
 rano = getRandom('.webp')
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/kiss?apikey=${apitobz}`, {method: 'get'})
+anu = await fetchJson(`https://tobz-api.herokuapp.com/api/kiss?apikey=847de7716f17a51eeba4235c${apitobz}`, {method: 'get'})
 if (anu.error) return reply(anu.error)
 exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 fs.unlinkSync(ranp)
@@ -1029,7 +1040,7 @@ break
                     } catch {
                         emoji = encodeURI(emoji)
                     }
-                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=${apilol}`)
+                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=847de7716f17a51eeba4235c${apilol}`)
                     thoth.sendMessage(from, ini_buffer, sticker, { quoted: mek})
                     break
                                 case 'tagall2':
