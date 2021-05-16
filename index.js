@@ -1,4 +1,4 @@
-loconst {
+const {
     WAConnection,
     MessageType,
     Presence,
