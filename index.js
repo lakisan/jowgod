@@ -1,4 +1,4 @@
-weconst {
+const {
     WAConnection,
     MessageType,
     Presence,
@@ -12,7 +12,7 @@ const banmsgporn = 'Hmmm, ja sabe né...'
 const { cv1} = require('./comm4nd')
 const { credits } = require('./src/credits')
 const { tipo } = require('./src/tipo')
-const { } = require('./src/about')
+const { about } = require('./src/about')
 const { idioma } = require('./src/idioma')
 const { music } = require('./src/music')
 const { flix } = require('./src/flix')
@@ -21,10 +21,10 @@ const { produtos } = require('./src/produtos')
 const { entretenimento } = require('./src/entretenimento')
 const { maker } = require('./src/maker')
 const { adms } = require('./src/adms')
-const { novela } = require('./src/novela')
-const { suspense } = require('./src/suspense')
-const { horror } = require('./src/horror')
 const { poesia } = require('./src/poesia')
+const { novela } = require('./src/novela')
+const { horror } = require('./src/horror')
+const { suspense } = require('./src/suspense')
 const { romance } = require('./src/romance')
 const { biblioteca } = require('./src/biblioteca')
 const { consultas } = require('./src/consultas')
@@ -108,7 +108,6 @@ async function starts() {
 				}
 			}
 		}
-		
 		if (!welkom.includes(anu.jid)) return
 		try {
 			mem = anu.participants[0]
@@ -119,21 +118,22 @@ async function starts() {
             }
             if (anu.action == 'add') {
             	num = anu.participants[0]
-                anu_img = await getBuffer(`https://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz&img=${pp_user}&text=MayBot`)
+                anu_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz$img=${pp_user}&text=May%20Bot`)
                 group_info = await thoth.groupMetadata(anu.jid)
-                welkam = `@${num.split('@')[0]} da uma olhadinha nas regras.`
+                welkam = `Bem Vindo @${num.split('@')[0]}`
                 thoth.sendMessage(anu.jid, anu_img, MessageType.image, { caption: welkam })
             } else if (anu.action == 'remove') {
             	num = anu.participants[0]
-                anu_img = await getBuffer(`https://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz&img=${pp_user}&text=Bye\nMayBot`)
+                anu_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz&img=${pp_user}&text=May%20Bot`)
                 group_info = await thoth.groupMetadata(anu.jid)
-                out = `1 minuto de silêncio`
+                out = `1 minuto de silêncio @${num.split('@')[0]}`
                 thoth.sendMessage(anu.jid, anu_img, MessageType.image, { caption: out })
             }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
 	})
+
 	thoth.on('CB:Blocklist', json => {
             if (blocked.length > 2) return
 	    for (let i of json[1].blocklist) {
@@ -178,7 +178,7 @@ async function starts() {
 					ownerG: '❌ Este comando só pode ser usado pelo dono do grupo! ❌',
 					ownerB: 'Que isso mana ? você não é o Thoth',				
 					admin: '❌ Você não é adm! ❌',
-					Badmin: '❌ Preciso ser adm!❌'
+					Badmin: '❌ Preciso ser adm! ❌'
 				}
 			}
 
@@ -443,26 +443,6 @@ break
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, about(prefix, sender), text, { quoted: mek })
 						break
-				case 'novela':
-					if (!isGroup) return reply(mess.only.group)
-						thoth.sendMessage(from, novela(prefix, sender), text, { quoted: mek })
-						break
-				case 'suspense':
-					if (!isGroup) return reply(mess.only.group)
-						thoth.sendMessage(from, suspense(prefix, sender), text, { quoted: mek })
-						break
-				case 'romance':
-					if (!isGroup) return reply(mess.only.group)
-						thoth.sendMessage(from, romance(prefix, sender), text, { quoted: mek })
-						break
-				case 'horror':
-					if (!isGroup) return reply(mess.only.group)
-						thoth.sendMessage(from, horror(prefix, sender), text, { quoted: mek })
-						break
-				case 'poesia':
-					if (!isGroup) return reply(mess.only.group)
-						thoth.sendMessage(from, poesia(prefix, sender), text, { quoted: mek })
-						break
 				case 'tipografia':
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, tipo(prefix, sender), text, { quoted: mek })
@@ -497,7 +477,7 @@ break
 				case 'igdl':
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://www.instagram.com/reel/COMGkhfgoxL/?igshid=1i4igoefclynv`)
                     ini_url = args[0]
-                    ini_url = await fetchJson(`https://api.lolhuman.xyz/api/instagram?apikey=${apilol}&url=${ini_url}`)
+                    ini_url = await fetchJson(`https://api.lolhuman.xyz/api/instagram?apikey=ZidanGanzz$url=${ini_url}`)
                     ini_url = ini_url.result
                     ini_type = image
                     if (ini_url.includes(".mp4")) ini_type = video
@@ -521,28 +501,10 @@ break
                     ini_buffer = await getBuffer(ini_url)
                     await thoth.sendMessage(from, ini_buffer, video, { quoted: mek })
                     break
-					case 'shipp':		
-	            	if (args.length < 1) return reply('marque o casal!')
-					rate = body.slice(1)
-					const ti =['5','10','18','29','38','44*','60','63','75','84','98','101','30','95','76','83','45','34']
-					const kl = ti[Math.floor(Math.random() * ti.length)]
-					thoth.sendMessage(from, 'Olha o casalzin: *'+rate+'*\n\nA chance de dar certo é : '+ kl+'%', text, { quoted: mek })
-					break
-		   case 'semoji':
-                    if (args.length == 0) return reply(`Exemplo: ${prefix + command} 😭`)
-                    emoji = args[0]
-                    try {
-                        emoji = encodeURI(emoji[0])
-                    } catch {
-                        emoji = encodeURI(emoji)
-                    }
-                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=847de7716f17a51eeba4235c`)
-                    thoth.sendMessage(from, ini_buffer, sticker, { quoted: mek})
-                    break
                 case 'ytplay':
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} Major RD`)
                     query = args.join(" ")
-                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=ZidanGanzz$&query=${query}`)
+                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=ZidanGanzz&query=${query}`)
                     get_result = get_result.result
                     get_info = get_result.info
                     ini_txt = `Título : ${get_info.title}\n`
@@ -608,7 +570,7 @@ break
 							})
 							.on('end', function () {
 								console.log('Finish')
-								exec(`webpmux -set exif ${addMetadata('JOWGOD', authorname)} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata('MayBOT', authorname)} ${ran} -o ${ran}`, async (error) => {
 									if (error) return reply(mess.error.stick)
 									thoth.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)
@@ -679,7 +641,7 @@ break
                         file_name = getRandom('.png')
                         file_name2 = getRandom('.webp')
                         request({
-                            url: `https://api.lolhuman.xyz/api/removebg?apikey=ZidanGanzz${apilol}`,
+                            url: `https://api.lolhuman.xyz/api/removebg?apikey=${apilol}`,
                             method: 'POST',
                             formData: {
                                 "img": fs.createReadStream(filePath)
@@ -783,7 +745,7 @@ break
 case 'kiss':
 ranp = getRandom('.gif')
 rano = getRandom('.webp')
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/kiss?apikey=847de7716f17a51eeba4235c${apitobz}`, {method: 'get'})
+anu = await fetchJson(`https://tobz-api.herokuapp.com/api/kiss?apikey=${apitobz}`, {method: 'get'})
 if (anu.error) return reply(anu.error)
 exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 fs.unlinkSync(ranp)
@@ -838,7 +800,7 @@ break
 case 'diario':
 if (args.length < 1) return reply(ind.wrongf())
 ct = body.slice(7)
-ct = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${ct}&apikey=pivinz${apizeks}`)
+ct = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${ct}&apikey=apivinz${apizeks}`)
 thoth.sendMessage(from, ct, image, {caption: 'May Bot🐒', quoted: mek})
 break
 case 'freefire':
@@ -872,7 +834,7 @@ break
 case 'pinterest2':
 if (args.length == 0) return reply(`Exemplo: ${prefix + command} loli kawaii`)
 query = args.join(" ")
-ini_url = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=${apilol}&query=${query}`)
+ini_url = await fetchJson(`https://api.lolhuman.xyz/api/pinterest?apikey=ZidanGanzz&query=${query}`)
 ini_url = ini_url.result
 ini_buffer = await getBuffer(ini_url)
 await thoth.sendMessage(from, ini_buffer, image, { quoted: mek })
@@ -994,7 +956,7 @@ if (!isGroup) return reply(mess.only.group)
 if (!isNsfw) return reply('Ligue o nsfw')
 if (args.length == 0) return reply(`*Exemplo : ${prefix + command} Japanese*`)
 query = args.join(" ")
-get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/xhamstersearch?apikey=ZidanGanzz&query=${query}`)
+get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/xhamstersearch?apikey=ZidanGanzz${apilol}&query=${query}`)
 get_result = get_result.result
 ini_txt = ""
 for (var x of get_result) {
@@ -1040,4 +1002,1042 @@ break
                     } catch {
                         emoji = encodeURI(emoji)
                     }
-                    ini_buffer = await getBuffer(`http://
+                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=ZidanGanzz${apilol}`)
+                    thoth.sendMessage(from, ini_buffer, sticker, { quoted: mek})
+                    break
+                                case 'tagall2':
+					members_id = []
+					teks = (args.length > 1) ? body.slice(8).trim() : ''
+					teks += '\n\n'
+					for (let mem of groupMembers) {
+						teks += `╠➥ @${mem.jid.split('@')[0]}\n`
+						members_id.push(mem.jid)
+					}
+					reply(teks)
+					break
+                                case 'tagall3':
+					members_id = []
+					teks = (args.length > 1) ? body.slice(8).trim() : ''
+					teks += '\n\n'
+					for (let mem of groupMembers) {
+						teks += `╠➥ https://wa.me/${mem.jid.split('@')[0]}\n`
+						members_id.push(mem.jid)
+					}
+					thoth.sendMessage(from, teks, text, {detectLinks: false, quoted: mek})
+					break
+				case 'clearall':
+					if (!isOwner) return reply('Você não é o Thoth')
+					anu = await thoth.chats.all()
+					thoth.setMaxListeners(25)
+					for (let _ of anu) {
+						thoth.deleteChat(_.jid)
+					}
+					reply('Chats limpos')
+					break
+					case 'bc':
+					if (!isOwner) return reply(mess.only.ownerB)
+					if (args.length < 1) return reply('.......')
+					anu = await thoth.chats.all()
+					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+						buff = await thoth.downloadMediaMessage(encmedia)
+						for (let _ of anu) {
+							thoth.sendMessage(_.jid, buff, image, {caption: `[Thoth falando]\n\n${body.slice(4)}`})
+						}
+						reply('Feito')
+					} else {
+						for (let _ of anu) {
+							sendMess(_.jid, `「THOTH FALANDO」\n\n${body.slice(4)}`)
+						}
+						reply('Feito')
+					}
+					break
+case 'promover':
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
+mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+if (mentioned.length > 1) {
+teks = 'Membro promovido\n'
+for (let _ of mentioned) {
+teks += `@${_.split('@')[0]}\n`
+}
+mentions(from, mentioned, true)
+thoth.groupRemove(from, mentioned)
+} else {
+mentions(`Sucesso: @${mentioned[0].split('@')[0]} Promovido para adm!`, mentioned, true)
+thoth.groupMakeAdmin(from, mentioned)
+}
+break
+case 'adtip':
+if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isQuotedVideo) return reply('Marque um vídeo')
+svst = body.slice(6)
+if (!svst) return reply('Nome do vídeo?')
+boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+delb = await thoth.downloadMediaMessage(boij)
+fs.writeFileSync(`./banco/tipo/${svst}.mp4`, delb)
+thoth.sendMessage(from, `Tipografia salva!`, MessageType.text, { quoted: mek })
+break
+case 'lv1':
+						  
+fs.readdir('./livros/mobydick/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/mobydick/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv2':
+						  
+fs.readdir('./livros/oalquimista/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/oalquimista/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv3':
+						  
+fs.readdir('./livros/kamasutra/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/kamutra/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv4':
+						  
+fs.readdir('./livros/ocodigodavinci/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/ocodigodavinci/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv5':
+						  
+fs.readdir('./livros/mitologianordica/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/mitologianordica/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv6':
+						  
+fs.readdir('./livros/jogadorn1/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/jogadorn1/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv7':
+						  
+fs.readdir('./livros/vermelhobrancoesangueazul/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/vermelhobrancoesangueazul/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv8':
+						  
+fs.readdir('./livros/lv8/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/lv8/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv9':
+						  
+fs.readdir('./livros/lv9/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/lv9/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv10':
+						  
+fs.readdir('./livros/eutenhoseriospoemasmentais/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/eutenhoseriospoemasmentais/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv11':
+						  
+fs.readdir('./livros/ofimemdoseshomeopaticas/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/ofimemdosesehomeopaticas/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lv12':
+						  
+fs.readdir('./livros/coraline/', async (err, files) => {
+let imagens = files.filter(f => f.split('.')[1]== 'pdf')
+let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
+						
+dua = fs.readFileSync(`./livros/coraline/${imagem}`)
+thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
+await limitAdd(sender)
+})
+break
+case 'lyric':
+						  
+fs.readdir('./banco/tipo/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'mp4')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+						
+dua = await fs.readFileSync(`./banco/tipo/${imagem}`)
+thoth.sendMessage(from, dua, video, {quoted: mek, caption: 'DJ May'})
+await limitAdd(sender)
+})
+break
+case 'macaco':
+  
+fs.readdir('./banco/macaco/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'webp')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+						
+dua = await fs.readFileSync(`./banco/macaco/${imagem}`)
+thoth.sendMessage(from, dua, sticker, {quoted: mek})
+await limitAdd(sender)
+})
+break
+case 'random':
+						  
+fs.readdir('./banco/random/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'webp')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+						
+dua = await fs.readFileSync(`./banco/random/${imagem}`)
+thoth.sendMessage(from, dua, sticker, {quoted: mek})
+await limitAdd(sender)
+})
+break
+case 'notif':
+thoth.updatePresence(from, Presence.composing)
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)
+teks = body.slice(6)
+group = await thoth.groupMetadata(from);
+member = group['participants']
+jids = [];
+member.map(async adm => {
+jids.push(adm.id.replace('c.us', 's.whatsapp.net'));
+})
+options = {
+text: teks,
+contextInfo: { mentionedJid: jids },
+quoted: mek
+}
+await thoth.sendMessage(from, options, text)
+break
+case 'pedra':
+let pedra = Math.floor(Math.random() * 3) + 1
+if(pedra == '1'){
+thoth.sendMessage(from, `Papel, ganhei.`, text, {quoted: mek})
+}
+else if (pedra == '2') {
+thoth.sendMessage(from, `Tesoura;-; af, perdi`, text, {quoted: mek})
+}
+else{
+thoth.sendMessage(from, `Pedra tbm, oporra`, text, {quoted: mek})
+}                   
+						
+						
+break
+case 'papel':
+let papel = Math.floor(Math.random() * 3) + 1
+if(papel == '1'){
+thoth.sendMessage(from, `Tesoura, ganhei.`, text, {quoted: mek})
+}
+else if (papel == '2') {
+thoth.sendMessage(from, `Pedra;-; af, perdi`, text, {quoted: mek})
+}
+else{
+thoth.sendMessage(from, `Papel tbm, oporra`, text, {quoted: mek})
+}                   
+						
+						
+break
+case 'tesoura':
+let tesoura = Math.floor(Math.random() * 3) + 1
+if(tesoura == '1'){
+thoth.sendMessage(from, `Pedra, ganhei.`, text, {quoted: mek})
+}
+else if (tesoura == '2') {
+thoth.sendMessage(from, `Papel;-; af, perdi`, text, {quoted: mek})
+}
+else{
+thoth.sendMessage(from, `Tesoura tbm, oporra`, text, {quoted: mek})
+}                   
+						
+						
+break
+case 'cassino':
+if (!isGroup) return reply(mess.only.group)
+let cassinao = ['🍉', '🍎','🍇']
+let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
+let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
+let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
+if(resposta1==resposta2&&resposta2==resposta3){
+thoth.sendMessage(from, `*JOGO DO CASSINO*:\n\n(((((((((((${resposta1}${resposta2}${resposta3})))))))))))))\n\n*Parabéns, _${pushname}_ VOCÊ GANHOU*!!!!!`, text, {quoted: mek})
+}
+else if(resposta1==resposta2||resposta2==resposta3){
+thoth.sendMessage(from, `*JOGO DO CASSINO*:\n\n(((((((((((${resposta1}${resposta2}${resposta3})))))))))))))\n\n*Puts, passou perto, _${pushname}_ Quase foi...*`, text, {quoted: mek})
+}
+else{
+thoth.sendMessage(from, `*JOGO DO CASSINO*:\n\n(((((((((((${resposta1}${resposta2}${resposta3})))))))))))))\n\n*kkkkk se fodeu, _${pushname}_ Tente na próxima...*`, text, {quoted: mek})
+}
+break                
+case 'addsticker':
+if (!isOwner) return reply(mess.only.ownerB)
+if (!isQuotedSticker) return reply('Marca um sticker')
+svst = body.slice(12)
+if (!svst) return reply('Nome do sticker?')
+boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+delb = await thoth.downloadMediaMessage(boij)
+fs.writeFileSync(`./banco/macaco/${svst}.webp`, delb)
+thoth.sendMessage(from, `Sticker salvo!`, MessageType.text, { quoted: mek })
+break
+case 'pinterest':
+if (!isGroup) return reply(mess.only.group)
+tels = body.slice(11)
+thoth.updatePresence(from, Presence.composing) 
+data = await fetchJson(`sua api`, {method: 'get'})
+reply(mess.wait)
+n = JSON.parse(JSON.stringify(data));
+nimek =  n[Math.floor(Math.random() * n.length)];
+pok = await getBuffer(nimek)
+thoth.sendMessage(from, pok, image, { quoted: mek, caption: `*May 📌*\n\*Resultado da pesquisa* : *${tels}*`})
+await limitAdd(sender)
+break
+                 case 'trigger':
+					
+					var imgbb = require('imgbb-uploader')
+					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
+					reply(mess.wait)
+					owgi = await  thoth.downloadAndSaveMediaMessage(ger)
+					anu = await imgbb("3b8594f4cb11895f4084291bc655e510", owgi)
+					teks = `${anu.display_url}`
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu1 = `sua api`
+					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					if (err) return reply(mess.error.stick)
+					exec(`webpmux -set exif ${addMetadata('May', 'Bot')} ${rano} -o ${rano}`, async (error) => {
+					if (error) return reply(mess.error.stick)
+					thoth.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+					})
+					})
+					} else {
+					reply('1 foto!')
+					}
+					await limitAdd(sender) 
+					break 
+				case 'wasted':
+					
+					var imgbb = require('imgbb-uploader')
+					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
+					reply(mess.wait)
+					owgi = await  thoth.downloadAndSaveMediaMessage(ger)
+					anu = await imgbb("3b8594f4cb11895f4084291bc655e510", owgi)
+					teks = `${anu.display_url}`
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu2 = `sua api`
+					exec(`wget ${anu2} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					if (err) return reply(mess.error.stick)
+					exec(`webpmux -set exif ${addMetadata('May', 'Bot')} ${rano} -o ${rano}`, async (error) => {
+					if (error) return reply(mess.error.stick)
+					thoth.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+					})
+					})
+					} else {
+					reply('1 foto!')
+					}
+					await limitAdd(sender) 
+				break
+					case 'rankgay':
+						try{
+						if(!isGroup) return reply(mess.only.group)
+						if (!isGroupAdmins) return reply(mess.only.admin)
+						d = []
+						teks = '🏳️‍🌈 Rank dos mais gays\n'
+						for(i = 0; i < 5; i++) {
+						r = Math.floor(Math.random() * groupMetadata.participants.length + 0)
+						teks += `🏳️‍🌈❧ @${groupMembers[r].jid.split('@')[0]}\n`
+						d.push(groupMembers[r].jid)
+						}
+						mentions(teks, d, true)
+						} catch (e) {
+						console.log(e)
+						reply('Deu erro, tente novamente :/')
+						}
+						break
+					case 'rankcaco':
+						try{
+						if(!isGroup) return reply(mess.only.group)
+						if (!isGroupAdmins) return reply(mess.only.admin)
+						d = []
+						teks = '🐒 Rank dos camacos\n'
+						for(i = 0; i < 5; i++) {
+						r = Math.floor(Math.random() * groupMetadata.participants.length + 0)
+						teks += `️‍🐒❧ @${groupMembers[r].jid.split('@')[0]}\n`
+						d.push(groupMembers[r].jid)
+						}
+						mentions(teks, d, true)
+						} catch (e) {
+						console.log(e)
+						reply('Deu erro, tente novamente :/')
+						}
+						break
+					case 'drip':
+						try{
+						if(!isGroup) return reply(mess.only.group)
+						if (!isGroupAdmins) return reply(mess.only.admin)
+						d = []
+						teks = '🥶 O verdadeiro molho 🥶\n'
+						for(i = 0; i < 5; i++) {
+						r = Math.floor(Math.random() * groupMetadata.participants.length + 0)
+						teks += `️‍🥶❧ @${groupMembers[r].jid.split('@')[0]}\n`
+						d.push(groupMembers[r].jid)
+						}
+						mentions(teks, d, true)
+						} catch (e) {
+						console.log(e)
+						reply('Deu erro, tente novamente :/')
+						}
+						break
+					case 'gostosa':
+						try{
+						if(!isGroup) return reply(mess.only.group)
+						if (!isGroupAdmins) return reply(mess.only.admin)
+						d = []
+						teks = '🚨GOSTOSA DETECTADA🚨\n'
+						for(i = 0; i < 1; i++) {
+						r = Math.floor(Math.random() * groupMetadata.participants.length + 0)
+						teks += `❧ @${groupMembers[r].jid.split('@')[0]}\n`
+						d.push(groupMembers[r].jid)
+						}
+						mentions(teks, d, true)
+						} catch (e) {
+						console.log(e)
+						reply('Deu erro, tente novamente :/')
+						}
+						break
+					case 'game':
+						try{
+						if(!isGroup) return reply(mess.only.group)
+						if (!isGroupAdmins) return reply(mess.only.admin)
+						d = []
+						teks = '🚨RIVAIS🚨\n'
+						for(i = 0; i < 2; i++) {
+						r = Math.floor(Math.random() * groupMetadata.participants.length + 0)
+						teks += `❧ @${groupMembers[r].jid.split('@')[0]}\n`
+						d.push(groupMembers[r].jid)
+						}
+						mentions(teks, d, true)
+						} catch (e) {
+						console.log(e)
+						reply('Deu erro, tente novamente :/')
+						}
+						break
+				case 'shipp':		
+	            	if (args.length < 1) return reply('marque seus amigos!')
+					rate = body.slice(1)
+					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
+					const kl = ti[Math.floor(Math.random() * ti.length)]
+					thoth.sendMessage(from, 'Olha o casal: *'+rate+'*\n\nA chance de dar certo é : '+ kl+'%', text, { quoted: mek })
+					break
+             case 'addrandom':
+				if (!isOwner) return reply(mess.only.ownerB)
+			    if (!isQuotedSticker) return reply('Marca um sticker')
+				svst = body.slice(11)
+				if (!svst) return reply('Nome do sticker?')
+				boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				delb = await thoth.downloadMediaMessage(boij)
+				fs.writeFileSync(`./banco/random/${svst}.webp`, delb)
+				thoth.sendMessage(from, `Sticker salvo!`, MessageType.text, { quoted: mek })
+				break
+					
+case 'cnpj':
+
+lxrd = body.slice(6)
+data = await fetchJson(`sua api`, {method: 'get'})
+if (data.error) return reply(data.error)
+kinycnpj = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *ATIVIDADE PRINCIPAL:* ${data.atividade_principal[0].text} \n\n ➸ *DATA SITUAÇÃO:* ${data.data_situacao}\n\n ➸ *TIPO:* ${data.tipo} \n\n ➸ *NOME:* ${data.nome} \n\n ➸ *UF:* ${data.uf} \n\n ➸ *TELEFONE:* ${data.telefone}\n\n ➸ *SITUAÇÃO:* ${data.situacao} \n\n ➸ *BAIRRO:* ${data.bairro} \n\n ➸ *RUA:* ${data.logradouro} \n\n ➸ *NÚMERO :* ${data.numero} \n\n ➸ *CEP :* ${data.cep} \n\n ➸ *MUNICÍPIO:* ${data.municipio} \n\n ➸ *PORTE:* ${data.porte}\n\n ➸ *ABERTURA:* ${data.abertura}\n\n ➸ *NATUREZA JURÍDICA:* ${data.natureza_juridica} \n\n ➸ *FANTASIA:* ${data.fantasia}\n\n ➸ *CNPJ:* ${data.cnpj}\n\n ➸ *ÚLTIMA ATUALIZAÇÃO:* ${data.ultima_atualizacao}\n\n ➸ *STATUS:* ${data.status}\n\n ➸ *COMPLEMENTO:* ${data.complemento}\n\n ➸ *EMAIL:* ${data.email}\n\n MAY BOT 📌`
+thoth.sendMessage(from, kinycnpj, text, {quoted: mek})
+await limitAdd(sender)
+break
+					
+case 'ip':
+
+lxrd = body.slice(4)
+ data = await fetchJson(`sua api`, {method: 'get'})
+if (data.error) return reply(data.error)
+kinycnpj = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *IP:* ${data.ip} \n\n ➸ *CIDADE:* ${data.city}\n\n ➸ *ESTADO:* ${data.region_name} \n\n ➸ *PAÍS:* ${data.country_name} \n\n ➸ *TIPO:* ${data.type} \n\n MAY BOT 📌`
+thoth.sendMessage(from, kinycnpj, text, {quoted: mek})
+ await limitAdd(sender)
+break
+
+case 'placa1':
+
+lxrd = body.slice(8)
+ data = await fetchJson(`sua api`, {method: 'get'})
+kinycnpj = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *ANO:* ${ano}\n\n ➸ *CHASSI:* ${chassi}\n\n ➸ *COR:* ${cor}\n\n ➸ *MODELO:* ${modelo}\n\n ➸ *MARCA:* ${marca}\n\n ➸ *SITUAÇÃO:* ${situacao}\n\n ➸ *ESTADO:* ${uf}\n\n ➸ *CIDADE:* ${municipio}\n\n MAY BOT 📌`
+thoth.sendMessage(from, kinycnpj, text, {quoted: mek})
+ await limitAdd(sender)
+break								
+					
+case 'cpf1':
+
+boxx = await fetchJson(`sua api`)
+box =  `*🔍CPF GERADO🔍* \n\n➸ CPF: ${boxx.data.number}\n➸ FORMATO CPF: ${boxx.data.number_formatted}\n➸ STATUS: ${boxx.data.message} \n\n MAY BOT 📌`
+thoth.sendMessage(from, box, text, {quoted: mek})
+break					
+					
+case 'cnpj1':
+
+boxx = await fetchJson(`sua api`)
+box =  `*🔍CNPJ GERADO🔍* \n\n➸ CNPJ: ${boxx.data.number}\n➸ FORMATO CNPJ: ${boxx.data.number_formatted}\n➸ STATUS: ${boxx.data.message} \n\n MAY BOT 📌`
+thoth.sendMessage(from, box, text, {quoted: mek})
+break					
+
+case 'cns1':
+
+boxx = await fetchJson(`sua api`)
+box =  `*🔍CNS GERADO🔍* \n\n➸ CNS: ${boxx.data.number}\n➸ FORMATO CNS: ${boxx.data.number_formatted}\n➸ STATUS: ${boxx.data.message} \n\n MAY BOT 📌`
+thoth.sendMessage(from, box, text, {quoted: mek})
+break						
+
+case 'pessoa':
+if (!isGroup) return reply(mess.only.group)
+hasil = gerador[Math.floor(Math.random() * (gerador.length))]
+thoth.sendMessage(from, ''+hasil+'', text, {quoted: mek})
+break					
+
+case 'cnh1':
+if (!isGroup) return reply(mess.only.group)
+hasil = cnh[Math.floor(Math.random() * (cnh.length))]
+thoth.sendMessage(from, ''+hasil+'', text, {quoted: mek})
+break
+					
+case 'pis1':
+if (!isGroup) return reply(mess.only.group)
+hasil = pis[Math.floor(Math.random() * (pis.length))]
+thoth.sendMessage(from, ''+hasil+'', text, {quoted: mek})
+break					
+
+case 'placa':
+if (!isGroup) return reply(mess.only.group)
+hasil = placa[Math.floor(Math.random() * (placa.length))]
+thoth.sendMessage(from, ''+hasil+'', text, {quoted: mek})
+break					
+
+case 'cc1':
+if (!isGroup) return reply(mess.only.group)
+hasil = cc[Math.floor(Math.random() * (cc.length))]
+thoth.sendMessage(from, ''+hasil+'', text, {quoted: mek})
+break						
+					
+case 'amongus':
+
+if (args.length == 0) return reply(`Uso: ${prefix + command} nome\nExemplo: ${prefix + command} Thoth`)
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/amongus?apikey=ZidanGanzz&text=${body.slice(9)}`)
+thoth.sendMessage(from, buffer, sticker, { quoted: mek})
+break
+					
+case 'gta':
+
+if (!isGroup) return reply(mess.only.group)
+daddy = `${body.slice(4)}`
+texto1 = daddy.split("/")[0];
+texto2 = daddy.split("/")[1];
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/gtapassed?apikey=ZidanGanzz$&text=&text1=${texto1}&text2=${texto2}`)
+thoth.sendMessage(from, buffer, image, {quoted: mek})
+break
+	
+case 'tkmusic':
+if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://vt.tiktok.com/ZSwWCk5o/h`)
+ini_link = args[0]
+get_audio = await getBuffer(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=ZidanGanzz&url=${ini_link}`)
+await thoth.sendMessage(from, get_audio, audio, { mimetype: Mimetype.mp4Audio, quoted: mek })
+break
+
+case '8bits':
+
+if (!isGroup) return reply(mess.only.group)
+daddy = `${body.slice(6)}`
+texto1 = daddy.split("/")[0];
+texto2 = daddy.split("/")[1];
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/photooxy2/arcade8bit?apikey=ZidanGanzz&text1=${texto1}&text2=${texto2}`)
+thoth.sendMessage(from, buffer, image, {quoted: mek})
+break
+					
+case 'trump':
+if (!isGroup) return reply(mess.only.group)
+daddy = `${body.slice(6)}`
+texto1 = daddy.split("/")[0];
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/tweettrump?apikey=ZidanGanzz&text=${texto1}`)
+thoth.sendMessage(from, buffer, image, {quoted: mek})
+break
+
+case 'hacker':
+if (!isGroup) return reply(mess.only.group)
+daddy = `${body.slice(7)}`
+texto1 = daddy.split("/")[0];
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/ephoto1/anonymhacker?apikey=ZidanGanzz&text=${texto1}`)
+thoth.sendMessage(from, buffer, image, {quoted: mek})
+break													
+
+case 'cobrar':
+					
+reply('Pode deixar...') 
+fs.readdir('./banco/gif/loli/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'mp4')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+
+dua = fs.readFileSync(`./banco/gif/loli/${imagem}`)
+var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+if(!mentioned||mentioned.length < 1||mentioned.length > 1) return thoth.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+thoth.sendMessage(from, dua, video, {mimetype: Mimetype.gif, caption: `${pushname} ESTÁ TE AMEAÇANDO "o cú ou a vida?" ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})                   
+})
+break
+					
+case 'kill':
+					
+reply('EITA😳...') 
+fs.readdir('./banco/gif/kill/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'mp4')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+
+dua = fs.readFileSync(`./banco/gif/kill/${imagem}`)
+var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+if(!mentioned||mentioned.length < 1||mentioned.length > 1) return thoth.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+thoth.sendMessage(from, dua, video, {mimetype: Mimetype.gif, caption: `${pushname} DEU UM TIRO NO(A) ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})                   
+})
+break					
+
+case 'tapa':
+					
+reply('EITA😳...') 
+fs.readdir('./banco/gif/tapa/', async (err, files) => {
+let imagens = files.filter(f => f.split('.').pop() == 'mp4')
+let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+
+dua = fs.readFileSync(`./banco/gif/tapa/${imagem}`)
+var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+if(!mentioned||mentioned.length < 1||mentioned.length > 1) return thoth.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+thoth.sendMessage(from, dua, video, {mimetype: Mimetype.gif, caption: `KKKKK ${pushname} DEU MÓ TAPÃO NO(A) ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})                   
+})
+break					
+					
+case 'hp':				
+if (!isGroup) return reply(mess.only.group)
+daddy = `${body.slice(3)}`
+texto1 = daddy.split("/")[0];
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/photooxy1/harrypotter?apikey=ZidanGanzz&text=${texto1}`)
+thoth.sendMessage(from, buffer, image, {quoted: mek})
+break
+					
+case 'conquista':				
+if (body.length > 25) return reply('O LIMITE É 15 CARACTERES')
+if(body.length<11) return thoth.sendMessage(from, 'Onde está o texto?\n\n*Exemplo: ${prefix + command} Thoth*', text, {quoted: mek})
+thoth.sendMessage(from, ('Estou fazendo Aguarde...'), text, {quoted: mek})
+buffer = await getBuffer(`https://www.minecraftskinstealer.com/achievement/a.php?i=13&h=Achievement+get%21&t=${body.slice(11)}`)
+thoth.sendMessage(from, buffer, image, {quoted:mek})
+break				
+					
+case 'slow':			
+low = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+slo = await thoth.downloadAndSaveMediaMessage(low)
+ran = getRandom('.mp3')
+exec(`ffmpeg -i ${slo} -filter:a "atempo=0.7,asetrate=44100" ${ran}`, (err, stderr, stdout) => {
+fs.unlinkSync(slo)
+if (err) return reply('Error!')
+hah = fs.readFileSync(ran)
+thoth.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
+fs.unlinkSync(ran)
+})
+break	
+
+case 'bass': 					
+ass = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+
+bas = await thoth.downloadAndSaveMediaMessage(ass)
+ran = getRandom('.mp3')
+exec(`ffmpeg -i ${bas} -af equalizer=f=94:width_type=o:width=2:g=30 ${ran}`, (err, stderr, stdout) => {
+fs.unlinkSync(bas)
+if (err) return reply('Error!')
+hah = fs.readFileSync(ran)
+thoth.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
+fs.unlinkSync(ran)
+})
+break
+					
+case 'letra':
+if (args.length < 1) return reply('Nome da música?')
+  
+thoth.updatePresence(from, Presence.composing)
+tels = body.slice(7)
+try {
+anu = await fetchJson(`sua api`, {
+method: 'get'
+})
+reply(anu.result.lirik)
+  
+} catch {
+reply(mess.ferr)
+}
+break
+ 
+case 'meme':
+if (!isGroup) return reply(mess.only.group)
+reply(mess.wait)
+anu = await fetchJson(`sua api`, {method: 'get'})
+ri = JSON.parse(JSON.stringify(anu));
+ze =  ri[Math.floor(Math.random() * ri.length)];
+nye = await getBuffer(ze)
+thoth.sendMessage(from, nye, image, { caption: 'kkkkkkkkkkkk', quoted: mek })
+break
+case 'roleta':
+let roleta = Math.floor(Math.random() * 2) + 1
+if(roleta == '1'){
+thoth.sendMessage(from, 'ATIREI EM VOCÊ', text, {quoted: mek})
+}
+else{
+thoth.sendMessage(from, 'NÂO ATIREI', text, {quoted: mek})
+}
+					
+break
+case 'fechar':
+thoth.updatePresence(from, Presence.composing)
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+var nomor = mek.participant
+const close = {
+text: `O adm @${nomor.split("@s.whatsapp.net")[0]}\nfechou o grupo`,
+contextInfo: { mentionedJid: [nomor] }
+}
+thoth.groupSettingChange(from, GroupSettingChange.messageSend, true);
+reply(close)
+break
+case 'tiktok':
+if (args.length < 1) return reply('Onde está o url?🍉✨')
+anu = await fetchJson(`https://api.zeks.xyz/api/tiktok?url=${body.slice(8)}&apikey=apivinz${apizeks}`, {method: 'get'})
+					
+thoth.sendMessage(from, mess.wait, text,{quoted : mek})
+pyu = `✅ PRONTO! ✅
+					
+🤖Criador : ${anu.author}
+🤖Título do vídeo : ${anu.title}	`
+buffer = await getBuffer(anu.no_watermark)
+buff = await getBuffer(anu.audio)
+thoth.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.no_watermark}.mp4`, quoted: mek, caption: pyu})
+thoth.sendMessage(from, buff, audio, {quoted : mek})
+break
+case 'on':
+let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
+let online = [...Object.keys(thoth.chats.get(ido).presences), thoth.user.jid]
+thoth.sendMessage(from, 'Monkeys Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: mek,
+contextInfo: { mentionedJid: online }
+})
+break
+						case 'abrir':
+							thoth.updatePresence(from, Presence.composing)
+							if (!isGroup) return reply(mess.only.group)
+							if (!isGroupAdmins) return reply(mess.only.admin)
+							if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+							open = {
+								text: `O adm @${sender.split("@")[0]}\nabriu o grupo`,
+								contextInfo: { mentionedJid: [sender] }
+							}
+							thoth.groupSettingChange(from, GroupSettingChange.messageSend, false)
+							thoth.sendMessage(from, open, text, { quoted: mek })
+							break
+							case 'play':
+								if (!isGroup) return reply(mess.only.group)
+									if(body.length < 5) return thoth.reply(from, 'Você precisa dizer a música', mek)
+				
+									res = (await fetchJson(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`, {method: 'get'}))[0]
+				
+									asize = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=https://youtu.be/${res.id}`, {method: 'get'})
+				
+									if(asize.filesize.replace(' MB', '')>=16||asize.filesize.endsWith('GB')){
+									thoth.reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
+									}
+									else{
+									thumb = await getBuffer(res.thumbnail)
+									thoth.sendMessage(from, thumb, image, {quoted: mek, caption: 'Calma ae, tô procurando o CD'})
+				
+									rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
+									buffer = await getBuffer(rest.result)
+				
+									thoth.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek, ptt: true})
+									}
+									break
+				case 'play2':  
+					if (isBanned) return reply(nad.baned())
+					reply(mess.wait)
+					play = body.slice(5)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz${apizeks}`)
+					if (anu.error) return reply(anu.error)
+					infomp3 = `*Caso não seja a musica que deseja, tente novamente*\n\n*Musica encontrada!!!*\nTitulo : ${anu.result.title}\nFonte : ${anu.result.source}\nTamanho : ${anu.result.size}\n\n*ESPERE ENVIANDO POR FAVOR, AGUARDE\n\n *MAY NO TOPO*`
+					buffer = await getBuffer(anu.result.thumbnail)
+					 lagu = await getBuffer(anu.result.url_audio)
+				     thoth.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
+					thoth.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+					  break
+				case 'demitir':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (mentioned.length > 1) {
+						teks = 'Membro demitido\n'
+						for (let _ of mentioned) {
+							teks += `@${_.split('@')[0]}\n`
+						}
+						mentions(teks, mentioned, true)
+						thoth.groupRemove(from, mentioned)
+					} else {
+						mentions(`Sucesso: @${mentioned[0].split('@')[0]} Foi demitido`, mentioned, true)
+						thoth.groupDemoteAdmin(from, mentioned)
+					}
+					break
+					case 'delete':
+						case 'del':
+						if (!isGroup) return reply(mess.only.group)
+							if (!isGroupAdmins) return reply(mess.only.admin)
+							thoth.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
+							break
+							case 'hub':
+								daddy = `${body.slice(4)}`
+								no = daddy.split("/")[0];
+								bg = daddy.split("/")[1];
+								 reply('Macaco, aguarde...')
+								buffer = await getBuffer(`https://api.zeks.xyz/api/phub?apikey=apivinz&img=https://1.bp.blogspot.com/-x8KhcOBG-yw/XiU4pi1yWVI/AAAAAAAADBA/gK8tsLyc1lQ808A348IKzDCjf6fUBKONwCLcBGAsYHQ/s1600/cara%2Bbuat%2Bfoto%2Bprofil%2Bdi%2Bwhatsapp%2Bmenjadi%2Bunik.jpg&username=${no}&msg=${bg}`, {method: 'get'})
+								thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pronto camaco'})
+								 await limitAdd(sender) 
+								break
+							
+case 'plaquinha':
+if (!isGroup) return reply(mess.only.group)
+if (args.length < 1) return reply(mess.blank)
+teks = body.slice(10)
+if (teks.length > 15) return reply('O texto é longo')
+reply('Macaco, aguarde...')
+buffer = await getBuffer(`sua api`)
+thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pronto camaco'})
+break
+							case 'plaquinha2':
+							if (!isGroup) return reply(mess.only.group)
+								if (args.length < 1) return reply(mess.blank)
+								teks = body.slice(11)
+								if (teks.length > 15) return reply('O texto é longo')
+								reply('Macaco, aguarde...')
+								buffer = await getBuffer(`sua api`)
+								thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pronto camaco'})
+								break
+							case 'googlelogo':
+								if (args.length < 1) return reply(mess.blank)
+								teks = body.slice(11)
+								if (teks.length > 15) return reply('O texto é longo')
+								reply('Macaco, aguarde...')
+								buffer = await getBuffer(`sua api`)
+								thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pronto camaco'})
+								break
+							case 'ph':
+							if (!isGroup) return reply(mess.only.group)
+								daddy = `${body.slice(3)}`
+								texto1 = daddy.split("/")[0];
+								 texto2 = daddy.split("/")[1];
+								 reply('Macaco, aguarde...')
+								  buffer = await getBuffer(`sua api`)
+								  thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Pronto camaco'})
+								break
+				case 'kick':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Marque a pessoa!')
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (mentioned.length > 1) {
+						teks = 'Removendo:\n'
+						for (let _ of mentioned) {
+							teks += `@${_.split('@')[0]}\n`
+						}
+						mentions(teks, mentioned, true)
+						thoth.groupRemove(from, mentioned)
+					} else {
+						mentions(`Você foi expulso: @${mentioned[0].split('@')[0]}`, mentioned, true)
+						thoth.groupRemove(from, mentioned)
+					}
+					break
+				case 'listadmin':
+					if (!isGroup) return reply(mess.only.group)
+					teks = `Lista de adms *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
+					no = 0
+					for (let admon of groupAdmins) {
+						no += 1
+						teks += `[${no.toString()}] @${admon.split('@')[0]}\n`
+					}
+					mentions(teks, groupAdmins, true)
+					break
+				case 'link':  
+				    if (!isGroup) return reply(mess.only.group)
+                    if (!isGroupAdmins) return reply(mess.only.admin)
+                    if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+                    linkgc = await thoth.groupInviteCode(from)
+                    reply('https://chat.whatsapp.com/'+linkgc)
+                    break
+                case 'sair':
+                    if (!isGroup) return reply(mess.only.group)
+                    if (isGroupAdmins || isOwner) {
+                    	thoth.groupLeave(from)
+                    } else {
+                        reply(mess.only.admin)
+                    }
+                    break
+				case 'img':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isQuotedSticker) return reply('❌ marque um sticker ❌')
+					reply(mess.wait)
+					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					media = await thoth.downloadAndSaveMediaMessage(encmedia)
+					ran = getRandom('.png')
+					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+						fs.unlinkSync(media)
+						if (err) return reply('❌ Só sticker sem movimento ❌')
+						buffer = fs.readFileSync(ran)
+						thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'kkkkkkkkkkkkkk'})
+						fs.unlinkSync(ran)
+					})
+					break
+case 'ia':
+lxrd = body.slice(4)
+data = await fetchJson(`sua api`, {method: 'get'})
+if (data.error) return reply(data.error)
+kiny = `${data.result}`
+thoth.sendMessage(from, kiny, text, {quoted: mek})
+await limitAdd(sender)
+break
+
+case 'may':
+lxrd = body.slice(5)
+data = await fetchJson(`sua api`, {method: 'get'})
+if (data.error) return reply(data.error)
+kiny = `${data.result}`
+thoth.sendMessage(from, kiny, text, {quoted: mek})
+await limitAdd(sender)
+break
+					
+case 'simih':
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)
+if (args.length < 1) return reply('Deseja ativar ou desativar?')
+if (Number(args[0]) === 1) {
+if (isSimi) return reply('O modo simi já está ativado')
+samih.push(from)
+fs.writeFileSync('./src/simi.json', JSON.stringify(samih))
+reply('O modo simi foi ativado...')
+} else if (Number(args[0]) === 0) {
+samih.splice(from, 1)
+fs.writeFileSync('./src/simi.json', JSON.stringify(samih))
+reply('Simi está desativado com sucesso')
+} else {
+reply('1 para ativar e 0 para desativar')
+}
+break
+case 'welcome':
+if (!isGroup) return reply(mess.only.group)
+if (!isGroupAdmins) return reply(mess.only.admin)
+if (args.length < 1) return reply('Hmmmm')
+if (Number(args[0]) === 1) {
+if (isWelkom) return reply('Já ativo')
+welkom.push(from)
+fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
+reply('Ativado com sucesso ✔️')
+} else if (Number(args[0]) === 0) {
+welkom.splice(from, 1)
+fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
+reply('Desativado com sucesso ✔️')
+} else {
+reply('1 para ativar, 0 para desativar')
+}
+break
+				case 'buscar':
+					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+						reply(mess.wait)
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+						media = await thoth.downloadMediaMessage(encmedia)
+						await wait(media).then(res => {
+							thoth.sendMessage(from, res.video, video, {quoted: mek, caption: res.teks.trim()})
+						}).catch(err => {
+							reply(err)
+						})
+					} else {
+						reply('Marque 1 imagem do anime')
+					}
+					break
+				default:
+					if (isGroup && isSimi && budy != undefined) {
+						console.log(budy)
+						muehe = await simih(budy)
+						console.log(muehe)
+						reply(muehe)
+					} else {
+						return //console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
+					}
+                           }
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
+	})
+}
+starts()
