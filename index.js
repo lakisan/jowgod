@@ -1710,7 +1710,7 @@ if (!isGroup) return reply(mess.only.group)
 daddy = `${body.slice(3)}`
 texto1 = daddy.split("/")[0];
 reply('Macaco, aguarde...')
-buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/photooxy1/harrypotter?apikey=${apilol}&text=${texto1}`)
+buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/photooxy1/harrypotter?apikey=ZidanGanzz${apilol}&text=${texto1}`)
 thoth.sendMessage(from, buffer, image, {quoted: mek})
 break
 					
