@@ -1,5 +1,5 @@
 const maker = (prefix, sender) => {
-	return `「 *May* 」
+	return `「 *Maker* 」
 
 「 SEM FLOOD 」
    ❏ ${prefix}plaquinha (texto)
