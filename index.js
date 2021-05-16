@@ -108,6 +108,7 @@ async function starts() {
 				}
 			}
 		}
+		
 		if (!welkom.includes(anu.jid)) return
 		try {
 			mem = anu.participants[0]
@@ -118,22 +119,21 @@ async function starts() {
             }
             if (anu.action == 'add') {
             	num = anu.participants[0]
-                anu_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz${apilol}&img=${pp_user}&text=May%20Bot`)
+                anu_img = await getBuffer(`https://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzzH${tlxrd}&img=${pp_user}&text=MayBot`)
                 group_info = await thoth.groupMetadata(anu.jid)
-                welkam = `Bem Vindo @${num.split('@')[0]}`
+                welkam = `@${num.split('@')[0]} da uma olhadinha nas regras.`
                 thoth.sendMessage(anu.jid, anu_img, MessageType.image, { caption: welkam })
             } else if (anu.action == 'remove') {
             	num = anu.participants[0]
-                anu_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz${apilol}&img=${pp_user}&text=May%20Bot`)
+                anu_img = await getBuffer(`https://api.lolhuman.xyz/api/welcomeimage?apikey=ZidanGanzz${tlxrd}&img=${pp_user}&text=Bye\nMayBot`)
                 group_info = await thoth.groupMetadata(anu.jid)
-                out = `1 minuto de silêncio @${num.split('@')[0]}`
+                out = `1 minuto de silêncio`
                 thoth.sendMessage(anu.jid, anu_img, MessageType.image, { caption: out })
             }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
 	})
-
 	thoth.on('CB:Blocklist', json => {
             if (blocked.length > 2) return
 	    for (let i of json[1].blocklist) {
@@ -542,7 +542,7 @@ break
                 case 'ytplay':
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} Major RD`)
                     query = args.join(" ")
-                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=ZidanGanzz${apilol}&query=${query}`)
+                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/ytplay?apikey=ZidanGanzz${tlxrd}&query=${query}`)
                     get_result = get_result.result
                     get_info = get_result.info
                     ini_txt = `Título : ${get_info.title}\n`
@@ -838,13 +838,13 @@ break
 case 'diario':
 if (args.length < 1) return reply(ind.wrongf())
 ct = body.slice(7)
-ct = await getBuffer(`https://api.zeks.xyz/api/nulis?text=ZidanGanzz${ct}&apikey=${apizeks}`)
+ct = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${ct}&apikey=pivinz${apizeks}`)
 thoth.sendMessage(from, ct, image, {caption: 'May Bot🐒', quoted: mek})
 break
 case 'freefire':
 if (args.length == 0) return reply(`Exemplo: ${prefix + command} Thoth`)
 ini_txt = args.join(" ")
-getBuffer(`https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=ZidanGanzz${apilol}&text=${ini_txt}`).then((gambar) => {
+getBuffer(`https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=ZidanGanzz&text=${ini_txt}`).then((gambar) => {
 thoth.sendMessage(from, gambar, image, { quoted: mek })
 })
 break
@@ -860,7 +860,7 @@ if (args.length == 0) return reply(`Examplo: ${prefix + command} en macaco`)
 kode_negara = args[0]
 args.shift()
 ini_txt = args.join(" ")
-get_result = await fetchJson(`https://api.lolhuman.xyz/api/translate/auto/${kode_negara}?apikey=${apilol}&text=${ini_txt}`)
+get_result = await fetchJson(`https://api.lolhuman.xyz/api/translate/auto/${kode_negara}?apikey=ZidanGanzz&text=${ini_txt}`)
 get_result = get_result.result
 init_txt = `De : ${get_result.from}\n`
 init_txt += `Para : ${get_result.to}\n`
@@ -994,7 +994,7 @@ if (!isGroup) return reply(mess.only.group)
 if (!isNsfw) return reply('Ligue o nsfw')
 if (args.length == 0) return reply(`*Exemplo : ${prefix + command} Japanese*`)
 query = args.join(" ")
-get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/xhamstersearch?apikey=${apilol}&query=${query}`)
+get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/xhamstersearch?apikey=ZidanGanzz&query=${query}`)
 get_result = get_result.result
 ini_txt = ""
 for (var x of get_result) {
@@ -1010,10 +1010,10 @@ if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 if (args.length == 0) return reply(`*Exemplo : ${prefix + command} monkey*`)
 query = args.join(" ")
-get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/stickerwa?apikey=${apilol}&query=${query}`)
+get_result = await fetchJson(`http://lolhuman.herokuapp.com/api/stickerwa?apikey=ZidanGanzz&query=${query}`)
 get_result = get_result.result[0].stickers
 for (var x of get_result) {
-ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/convert/towebp?apikey=${apilol}&img=${x}`)
+ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/convert/towebp?apikey=ZidanGanzz&img=${x}`)
 thoth.sendMessage(from, ini_buffer, sticker)
 }
 break
@@ -1040,7 +1040,7 @@ break
                     } catch {
                         emoji = encodeURI(emoji)
                     }
-                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=847de7716f17a51eeba4235c${apilol}`)
+                    ini_buffer = await getBuffer(`http://lolhuman.herokuapp.com/api/smoji/${emoji}?apikey=ZidanGanzz${apilol}`)
                     thoth.sendMessage(from, ini_buffer, sticker, { quoted: mek})
                     break
                                 case 'tagall2':
@@ -1233,7 +1233,7 @@ fs.readdir('./livros/ofimemdoseshomeopaticas/', async (err, files) => {
 let imagens = files.filter(f => f.split('.')[1]== 'pdf')
 let imagem = imagens[Math.floor(Math.random() * imagens.length + 0)]
 						
-dua = fs.readFileSync(`./livros/coraline/${imagem}`)
+dua = fs.readFileSync(`./livros/ofimemdoseshomeopaticas/${imagem}`)
 thoth.sendMessage(from, dua, document, {mimetype: Mimetype.pdf})
 await limitAdd(sender)
 })
@@ -1515,4 +1515,6 @@ break
 						mentions(teks, d, true)
 						} catch (e) {
 						console.log(e)
-						reply('Deu er
+						reply('Deu erro, tente novamente :/')
+						}
+						break
