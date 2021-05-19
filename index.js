@@ -521,6 +521,37 @@ break
                     get_video = await getBuffer(get_result.video[0].link)
                     await thoth.sendMessage(from, get_video, video, { mimetype: 'video/mp4', filename: `${get_info.title}.mp4`, quoted: mek })
                     break
+ 			case 'amonga':
+			msgFilter.isFiltered(from)
+			if (!isGroup) return reply(ptbr.group())
+			if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Você precisa mencionar alguém')
+			mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+			pro = '.\n'
+			for (let _ of mentioned) {
+			pro += `@${_.split('@')[0]}\n`
+}
+			sus = 
+			`.      　。　　　　•　    　ﾟ　　。
+			　　.　　　.　　　  　　.　　　　　。　　   。　.
+			　.　　      。　        ඞ   。　    .    •
+			•            @${mentioned[0].split('@')[0]} was E j e c t e d
+ 			                 1 impostor remain   。　.
+			　 　　。　　 　　　　ﾟ　　　.　      　　　.
+			,　　　　.                  .`
+			// thoth.groupRemove(from, mentioned)
+			mentions(`${sus}`, mentioned, true)
+			break
+					case 'simi':
+					if (args.length < 1) return reply(`Use ${prefix}simi texto`)
+					try { 
+					anu = await fetchJson(`https://simsumi.herokuapp.com/api?text=${encodeURIComponent(body.slice(5))}`, {method: 'get'})
+					if (anu.error) return reply('Não sei ler o que não existe 🐤 (converse cmg)')
+					thoth.sendMessage(from, `${anu.success} 🐤`, text, {quoted: mek})
+					} catch {
+					reply(ptbr.erro)
+					}
+					break
+					
 				case 's':
 				case 'sticker':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
@@ -679,7 +710,7 @@ break
 					buffer = await getBuffer(anu.result)
 					thoth.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: mek})
 					break
-			    case 'ocr':
+	           case 'ocr':
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                         var encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
                         var filePath = await thoth.downloadAndSaveMediaMessage(encmedia, filename = getRandom());
@@ -701,11 +732,16 @@ break
                         reply(`Marque a foto ou tente novamente`)
                     }
                     break
+case 'git':
+mekFilter.addFilter(from)
+thoth.sendMessage(from, `https://github.com/lakisan/jowgod` , text, {quoted: mek})
+break	
 					
 case 'cc2':
 anu = await fetchJson(`sua api`, {method:'get'})
 teks = `*♻️NÚMERO*: ${anu.result.card.number}\n*♻️TIPO*: ${anu.result.card.network}\n*♻️CVV*: ${anu.result.card.cvv}\n*♻️PIN*: ${anu.result.card.pin}\n*♻️DINHEIRO*: ${anu.result.card.balance}\n*♻️EXPIRAR-MÊS*: Personalizado\n*♻️EXPIRARAR-ANO*: Personalizar\n*♻️PAÍS*: ${anu.result.customer.country}\n*♻️NOME*: ${anu.result.customer.name}\n𝗠𝗔𝗬 𝗕𝗢𝗧`
 thoth.sendMessage(from, teks, text, {quoted: mek})
+					
 
 break					
 case 'hentai':
@@ -769,7 +805,449 @@ thoth.sendMessage(from, buffer, sticker, {quoted: mek})
 fs.unlinkSync(rano)
 })
 await limitAdd(sender)
-break					
+break			
+case 'timer':
+if (args[1]=="segundo") {var timer = args[0]+"000"
+} else if (args[1]=="minuto") {var timer = args[0]+"0000"
+} else if (args[1]=="hora") {var timer = args[0]+"00000"
+} else {return reply("Escolher entre: \nsegundo\nminuto\nhora\n\nExemplo: =timer 30 segundo")}
+setTimeout( () => {
+reply("O tempo acabou")
+}, timer)
+break
+case 'pão':
+if (isOwner) return reply('Oi Laki')
+else {
+reply('Oi membro comum')
+}
+break 
+case 'ownergrup':
+case 'ownergroup':
+thoth.updatePresence(from, Presence.composing) 
+options = {
+text: `Dono do grupo: @${from.split("-")[0]}`,
+contextInfo: { mentionedJid: [from]}}
+thoth.sendMessage(from, options, text, { quoted: mek } )
+break
+case 'gimage':
+case 'googleimage':
+try {
+if (!isNsfw) return reply(ptbr.nsfw())
+if (args.length < 1) return reply('Digite o que deseja buscar')
+reply(ptbr.wait())
+teks = args.join(' ')
+res = await googleImage(teks, google)
+function google(error, result){
+if (error){ return reply('Ocorreu um erro')}
+else {
+var gugIm = result
+var random =  gugIm[Math.floor(Math.random() * gugIm.length)].url
+sendFileFromUrl(random, image, {quoted: mek, caption: `Aqui está sua pesuisa sobre: ${teks}`})
+}
+}
+} catch (e) {
+console.log(`Error :`, color(e,'red'))
+reply('❌ocorreu um erro❌\n\nTente novamente. ')
+}
+break
+case 'gatinho':
+msgFilter.isFiltered(from)
+reply(ptbr.wait())
+try {
+axios.get(`https://nekos.life/api/v2/img/meow`).then((res)=>{
+imageToBase64(res.data.url).then((response) => {var buf = Buffer.from(response, 'base64');
+thoth.sendMessage(from, buf, image, {quoted: mek,caption: "🐱"})
+})})
+} catch (e) {
+console.log(`Error :`, color(e,'red'))
+reply('❌ocorreu um erro❌\n\nTente novamente. ')
+}
+break
+
+case 'dog':
+try {
+msgFilter.isFiltered(from)
+reply(ptbr.wait())
+res = axios.get(`https://nekos.life/api/v2/img/woof`).then(res => {
+imageToBase64(res.data.url)
+.then(
+(ress) => {
+var buf = Buffer.from(ress, 'base64')
+thoth.sendMessage(from, buf, MessageType.image, {quoted: mek})
+})
+})
+} catch (e) {
+if(console.log == "marker was not found")
+reply('❌ocorreu um erro❌\n\nTente novamente. ')
+}
+break
+case 'info':
+msgFilter.isFiltered(from)
+me = thoth.user
+uptime = process.uptime()
+inf =
+ `‣ Nome do bot: ${me.name}
+  ‣ Número do bot: @${me.jid.split('@')[0]}
+  ‣ Dono: laki
+  ‣ Prefix: ${prefix}
+  ‣ O bot está ativo há: ${temporizador(uptime)}
+  ‣ Total de usuários: ${_registered.length} usuários
+  ‣ Total chats: ${totalchat.length}`
+buffer = await getBuffer(me.imgUrl)
+thoth.sendMessage(from, buffer, image, {caption: inf, contextInfo: {mentionedJid: [me]}})
+break
+case 'wp':
+case 'wallpaper':
+msgFilter.isFiltered(from)
+thoth.updatePresence(from, Presence.composing)
+pw = ["wallpaper aestethic",
+"wallpaper tumblr",
+"wallpaper lucu",
+"wallpaper"]
+nk = pw[Math.floor(Math.random() * pw.length)]
+try {
+data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
+method: 'get'
+})
+reply(ptbr.wait())
+n = JSON.parse(JSON.stringify(data));
+nimek = n[Math.floor(Math.random() * n.length)];
+pok = await getBuffer(nimek)
+thoth.sendMessage(from, pok, image, {
+quoted: mek, caption: `Gostou do que escolhi?`
+})
+} catch {
+reply(ptbr.erro())
+}
+break
+case 'clone':
+if (!isGroup) return reply(ptbr.group())
+if (!isOwner) return reply(ptbr.ownerB())
+if (args.length < 1) return reply('Mencione quem devo roubar a foto de perfil')
+if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag cvk')
+mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+let { jid, id, notify } = groupMembers.find(x => x.jid === mentioned)
+try {
+pp = await thoth.getProfilePicture(id)
+buffer = await getBuffer(pp)
+thoth.updateProfilePicture(botNumber, buffer)
+mentions(`Roubei a foto de perfil de: @${id.split('@')[0]}`, [jid], true)
+} catch (e) {
+reply('ocorreu um erro')
+}
+break
+case 'register':
+if (isUser) return  reply('você já está registrado')
+if (!q.includes('|')) return reply(`Digite da forma correta:\nComando: ${prefix}registrar nome|idade\nExemplo: ${prefix}registrar laki|16`)
+// if (args.length < 1) return reply(`Como se registrar:\nComando: ${prefix}registrar nome|idade\nExemplo: ${prefix}registrar Italu|18`)
+const namaUser = q.substring(0, q.indexOf('|') - 0)
+const umurUser = q.substring(q.lastIndexOf('|') + 1)
+const serialUser = createSerial(20)
+if(isNaN(umurUser)) return reply(`Digite da forma correta:\nComando: ${prefix}registrar nome|idade\nExemplo: ${prefix}registrar laki|16`)
+if (namaUser.length >= 60) return reply(`Seu nome é muito longo`)
+if (umurUser > 40) return reply(`Idade máxima é 40 anos`)
+if (umurUser < 12) return reply(`Idade mínima é 12 anos`)
+veri = sender
+try {
+ppimg = await thoth.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
+} catch {
+ppimg = 'https://i.ibb.co/rxPtZS8/foto.jpg'
+}
+captionnya = 
+`    〘 Registrado(a) com sucesso 〙
+  Código: ${serialUser}
+╔════════════════
+╠≽️ Dia: ${date}
+╠≽️ Hora: ${hr}
+╠≽️ Nome de usuário: @${sender.split("@")[0]}
+╠≽️ Nome de registro: ${namaUser}
+╠≽️ Idade: ${umurUser}
+╠≽️ Seu link wame: wa.me/${sender.split("@")[0]}
+╠≽️ Número: ${sender.split("@")[0]}
+╚════════════════
+você se registrou, digite ${prefix}menu para listar meus comandos`
+daftarimg = await getBuffer(ppimg)
+addRegisteredUser(sender, namaUser, umurUser, time, serialUser)
+thoth.sendMessage(from, daftarimg, image, {quoted: mek, caption: captionnya, contextInfo: {mentionedJid: [sender]}})                    
+break
+case 'ttt':
+const limitrl = getLimit(sender, daily)
+if (!isGroup) {
+reply(ptbr.group())
+} else if (tttset.tttstatus == "on") {
+reply(`Alguém já está jogando no momento\nPor favor aguarde um instante...`)
+} else if (tttset.waitingTime == "on") {
+reply(`Alguém jogou recentemente\nPor favor aguarde o tempo de espera...`)
+} else if (args == 0 || (args != 'easy' && args != 'Easy' && args != 'EASY' && args != 'normal' && args != 'Normal' && args != 'NORMAL' && args != 'hard' && args != 'Hard' && args != 'HARD'&& args != 'impossible'&& args != 'Impossible' && args != 'IMPOSSIBLE')) {
+reply(`Defina a dificuldade\nEx.: ${prefix}ttt easy\n\nDificuldades: easy, normal, hard e impossible`)
+} else if (limitrl !== undefined && cdd - (Date.now() - limitrl) > 0) {
+reply('Opa, deixe seus abigos jogarem também, tente novamente em 8 minutos.')
+} else {
+tttset.tttstatus = "on"
+tttset.player = sender
+tttset.playerName = pushname
+tttset.mentionPlayer = mek
+tttset.local = from
+if (args == 'easy' || args == 'Easy' || args == 'EASY') {
+tttset.tttdifficulty = "EASY"
+} else if (args == 'normal' || args == 'Normal' || args == 'NORMAL') {
+tttset.tttdifficulty = "NORMAL"
+} else if (args == 'hard' || args == 'Hard' || args == 'HARD') {
+tttset.tttdifficulty = "HARD"
+} else if (args == 'impossible' || args == 'Impossible' || args == 'IMPOSSIBLE') {
+tttset.tttdifficulty = "IMPOSSIBLE"
+}
+const randomStartIA = Math.floor(Math.random() * 3)
+if (randomStartIA == 0) {
+IA()
+tttset.reActivate1 = "on"	
+}
+costum(`O jogo começou!!!\nModo: ${tttset.tttdifficulty}`, text, tescuk, crtt)
+thoth.sendMessage(from, `🌀1️⃣2️⃣3️⃣\n🅰️${esp.a1}${esp.a2}${esp.a3}\n🅱️${esp.b1}${esp.b2}${esp.b3}\n©️${esp.c1}${esp.c2}${esp.c3}`,text )
+thoth.sendMessage(from,`Caso não saiba como jogar digite: ${prefix}ttthelp`, text) 
+setTimeout( () => {
+tttset.waitingTime = "off"
+tttset.autoEndTime = "on"
+}, 240000) //4 minutos
+addLimit(sender, daily)
+}
+break
+
+case 'ttthelp':
+thoth.sendMessage(from, ttthelp(prefix), text)
+break
+
+case 'tttme':
+if (!isGroup) return reply(ptbr.group())
+const checkTTTIdMe = getTTTId(sender)
+if (checkTTTIdMe === undefined) addTTTId(sender)
+thoth.sendMessage(from, tttme(pushname, getTTTwins(sender), getTTTdefeats(sender), getTTTties(sender), getTTTpoints(sender)), text, {quoted:mek})
+break
+
+case 'tttrank':
+if (!isGroup) return reply(ptbr.group())
+//if (tictactoe.length < 3) return reply(`Humm, é necessário que no mínimo 3 pessoas tenham jogado...`)
+tictactoe.sort((a, b) => (a.points < b.points) ? 1 : -1)
+mentioned_jid = []
+let board = '【 TTT RANKS 】\n\n'
+try {
+for (let i = 0; i < 3; i++) {
+if (i == 0) {board += `${i + 1}º 🥇 : @${tictactoe[i].jid.split('@')[0]}\n╭╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n│ ➣ Vitórias: ${tictactoe[i].wins} 🎊\n│ ➣ Derrotas: ${tictactoe[i].defeats} 💥\n│ ➣ Empates: ${tictactoe[i].ties} 🌀\n│ ➣ Pontos: ${tictactoe[i].points} ✨\n╰╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n\n`
+} else if (i == 1) {board += `${i + 1}º 🥈 : @${tictactoe[i].jid.split('@')[0]}\n╭╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n│ ➣ Vitórias: ${tictactoe[i].wins} 🎊\n│ ➣ Derrotas: ${tictactoe[i].defeats} 💥\n│ ➣ Empates: ${tictactoe[i].ties} 🌀\n│ ➣ Pontos: ${tictactoe[i].points} ✨\n╰╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n\n`
+} else if (i == 2) {board += `${i + 1}º 🥉 : @${tictactoe[i].jid.split('@')[0]}\n╭╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n│ ➣ Vitórias: ${tictactoe[i].wins} 🎊\n│ ➣ Derrotas: ${tictactoe[i].defeats} 💥\n│ ➣ Empates: ${tictactoe[i].ties} 🌀\n│ ➣ Pontos: ${tictactoe[i].points} ✨\n╰╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸\n\n`
+}
+mentioned_jid.push(tictactoe[i].jid)
+} 
+mentions(board, mentioned_jid, true)
+} catch (err) {
+console.log(err)
+await thoth.sendMessage(from, `Humm, é necessário que no mínimo 3 pessoas tenham jogado...`, text, {quoted: mek})
+}
+break
+
+case 'coord' :
+tttset.playertest = sender
+if (!isGroup) {
+reply(ptbr.group())
+} else if (tttset.tttstatus == "off") {
+reply(`Você ainda não iniciou o jogo\nDigite ${prefix}ttt [DIFICULDADE] para iniciar`)
+} else if (tttset.player != tttset.playertest) {
+reply(`Alguém já está jogando no momento\nPor favor aguarde um instante...`)
+} else if (tttset.tttantibug == "on") {
+reply(`Aguarde a ação anterior ser concluída...`)
+} else {
+tttset.tttantibug = "on"
+const coordX = args
+if (coordX != 'a1' && coordX != 'a2' && coordX != 'a3' &&
+coordX != 'b1' && coordX != 'b2' && coordX != 'b3' &&
+coordX != 'c1' && coordX != 'c2' && coordX != 'c3') {
+reply(`Digite o comando com uma coordenada\nExemplo: ${prefix}coord a1`)
+tttset.tttantibug = "off"
+} else {
+switch (args[0]) {
+case 'a1':
+if (esp.a1 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.a1 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'a2':
+if (esp.a2 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.a2 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'a3':
+if (esp.a3 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.a3 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'b1':
+if (esp.b1 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.b1 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'b2':
+if (esp.b2 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.b2 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'b3':
+if (esp.b3 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.b3 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'c1':
+if (esp.c1 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.c1 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'c2':
+if (esp.c2 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.c2 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+case 'c3':
+if (esp.c3 != "🔲") {
+reply('O espaço já foi ocupado\nTente outra coordenada')
+} else {
+esp.c3 = "❌"
+while (tttset.reActivate1 == "on") {
+IA()
+}
+}
+break
+}
+tttset.reActivate1 = "on"
+reply(`🌀1️⃣2️⃣3️⃣\n🅰️${esp.a1}${esp.a2}${esp.a3}\n🅱️${esp.b1}${esp.b2}${esp.b3}\n©️${esp.c1}${esp.c2}${esp.c3}`)
+var randomTTTXP = 0
+if (WinnerX()) {
+if (isLevelingOn) {
+switch (tttset.tttdifficulty) {
+case "EASY":
+randomTTTXP = Math.floor(Math.random() * 25) + 25
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "NORMAL":
+randomTTTXP = Math.floor(Math.random() * 75) + 75
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "HARD":
+randomTTTXP = Math.floor(Math.random() * 200) + 200
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "IMPOSSIBLE":
+randomTTTXP = Math.floor(Math.random() * 1000) + 1000
+addLevelingXp(tttset.player, randomTTTXP)
+break
+}
+thoth.sendMessage(from, `🎉🎉 VITÓRIA DO JOGADOR 🎉🎉\n\n➣  RECOMPENSA: +${randomTTTXP} XP 🔮`, text)
+} else {
+thoth.sendMessage(from, `🎉🎉 VITÓRIA DO JOGADOR 🎉🎉`, text)
+}
+const currentTTTwins = getTTTwins(tttset.player)
+const checkTTTIdWin = getTTTId(tttset.player)
+if (currentTTTwins === undefined && checkTTTIdWin === undefined) addTTTId(tttset.player)
+addTTTwin(tttset.player, 1)
+addTTTpoints(tttset.player, randomTTTXP)
+esp.a1 = "🔲"; esp.a2 = "🔲"; esp.a3 = "🔲"
+esp.b1 = "🔲"; esp.b2 = "🔲"; esp.b3 = "🔲"
+esp.c1 = "🔲"; esp.c2 = "🔲"; esp.c3 = "🔲"
+tttset.tttstatus = "off"
+tttset.waitingTime = "on"
+} else if (WinnerO()) {
+if (isLevelingOn) {
+switch (tttset.tttdifficulty) {
+case "EASY":
+randomTTTXP = 0 - (Math.floor(Math.random() * 200) + 200)
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "NORMAL":
+randomTTTXP = 0 - (Math.floor(Math.random() * 75) + 75)
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "HARD":
+randomTTTXP = 0 - (Math.floor(Math.random() * 25) + 25)
+addLevelingXp(tttset.player, randomTTTXP)
+break
+case "IMPOSSIBLE":
+randomTTTXP = 0
+addLevelingXp(tttset.player, randomTTTXP)
+break
+}	
+thoth.sendMessage(from, `🎉🎉 VC PERDEU PRA UM ROBO KKKKKKKKKK 🎉🎉\n\n➣  PUNIÇÃO: ${randomTTTXP} XP 🔮`, text)
+} else {
+thoth.sendMessage(from, `🎉🎉 VC PERDEU PRA UM ROBO KKKKKKKKKK 🎉🎉`, text)
+}
+const currentTTTdefeats = getTTTdefeats(tttset.player)
+const checkTTTIdDefeat = getTTTId(tttset.player)
+if (currentTTTdefeats === undefined && checkTTTIdDefeat === undefined) addTTTId(tttset.player)
+addTTTdefeat(tttset.player, 1)
+addTTTpoints(tttset.player, randomTTTXP)
+esp.a1 = "🔲"; esp.a2 = "🔲"; esp.a3 = "🔲"
+esp.b1 = "🔲"; esp.b2 = "🔲"; esp.b3 = "🔲"
+esp.c1 = "🔲"; esp.c2 = "🔲"; esp.c3 = "🔲"
+tttset.tttstatus = "off"
+tttset.waitingTime = "on"
+} else if (Tie()) {
+if (isLevelingOn) {
+thoth.sendMessage(from, `🎉🎉 EMPATE 🎉🎉\n\n➣  NÃO HÁ GANHOS NEM PERDAS`, text)
+} else {
+thoth.sendMessage(from, `🎉🎉 EMPATE 🎉🎉`, text)
+}
+const currentTTTties = getTTTties(tttset.player)
+const checkTTTIdTie = getTTTId(tttset.player)
+if (currentTTTties === undefined && checkTTTIdTie === undefined) addTTTId(tttset.player)
+addTTTtie(tttset.player, 1)
+esp.a1 = "🔲"; esp.a2 = "🔲"; esp.a3 = "🔲"
+esp.b1 = "🔲"; esp.b2 = "🔲"; esp.b3 = "🔲"
+esp.c1 = "🔲"; esp.c2 = "🔲"; esp.c3 = "🔲"
+tttset.tttstatus = "off"
+tttset.waitingTime = "on"
+}
+tttset.tttantibug = "off"
+}
+}
+break
+
 case 'loli':
 gatauda = body.slice(6)
 if (!isGroup) return reply(mess.only.group)
