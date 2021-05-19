@@ -887,6 +887,22 @@ case 'biblioteca':
 if (!isGroup) return reply(mess.only.group)
 thoth.sendMessage(from, biblioteca(prefix, sender), text, { quoted: mek })
 break
+case 'novela':
+if (!isGroup) return reply(mess.only.group)
+thoth.sendMessage(from, novela(prefix, sender), text, { quoted: mek })
+break
+case 'horror':
+if (!isGroup) return reply(mess.only.group)
+thoth.sendMessage(from, horror(prefix, sender), text, { quoted: mek })
+break
+case 'suspense':
+if (!isGroup) return reply(mess.only.group)
+thoth.sendMessage(from, suspense(prefix, sender), text, { quoted: mek })
+break
+case 'romance':
+if (!isGroup) return reply(mess.only.group)
+thoth.sendMessage(from, romance(prefix, sender), text, { quoted: mek })
+break
 				case 'produtos':
 					if (!isGroup) return reply(mess.only.group)
 						thoth.sendMessage(from, produtos(prefix, sender), text, { quoted: mek })
