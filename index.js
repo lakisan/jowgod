@@ -24,6 +24,7 @@ const { adms } = require('./src/adms')
 const { poesia } = require('./src/poesia')
 const { novela } = require('./src/novela')
 const { horror } = require('./src/horror')
+const { addLimit, getLimit } = require('./lib/limit.js')
 const { ttthelp } = require('./database/ttt/TTTconfig/ttthelp');
 const { tttme } = require('./database/ttt/TTTconfig/tttme');
 var tttset = require('./database/ttt/TTTconfig/tttset.json');
@@ -750,69 +751,7 @@ teks = `*♻️NÚMERO*: ${anu.result.card.number}\n*♻️TIPO*: ${anu.result.c
 thoth.sendMessage(from, teks, text, {quoted: mek})
 					
 
-break					
-case 'hentai':
-gatauda = body.slice(6)
-if (!isGroup) return reply(mess.only.group)
-if (!isNsfw) return reply('Ligue o nsfw')
-reply(mess.wait)
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${apitobz}`, {method: 'get'})
-buffer = await getBuffer(anu.result)
-thoth.sendMessage(from, buffer, image, {quoted: mek, caption: 'Sapecagens 😈'})
-break
-case 'happymod':
-if (!isGroup) return reply(mess.only.group)
-data = await fetchJson(`https://tobz-api.herokuapp.com/api/happymod?q=${body.slice(10)}&apikey=${apitobz}`)
-hupo = data.result[0] 
-teks = `*Nome*: ${data.result[0].title}\n*versão*: ${hupo.version}\n*Tamanho:* ${hupo.size}\n*Link*: ${hupo.link}\n 𝗠𝗔𝗬 𝗕𝗢𝗧`
-buffer = await getBuffer(hupo.image)
-thoth.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
-await limitAdd(sender)
-break					
-case 'blowjob':
-if (!isGroup) return reply(mess.only.group)
-if (!isNsfw) return reply('Ligue o nsfw')
-ranp = getRandom('.gif')
-rano = getRandom('.webp')
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=${apitobz}`, {method: 'get'})
-if (anu.error) return reply(anu.error)
-exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-fs.unlinkSync(ranp)
-if (err) return reply(ind.stikga())
-buffer = fs.readFileSync(rano)
-thoth.sendMessage(from, buffer, sticker, {quoted: mek})
-fs.unlinkSync(rano)
-})
-await limitAdd(sender)
-break
-case 'kiss':
-ranp = getRandom('.gif')
-rano = getRandom('.webp')
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/kiss?apikey=${apitobz}`, {method: 'get'})
-if (anu.error) return reply(anu.error)
-exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-fs.unlinkSync(ranp)
-if (err) return reply(ind.stikga())
-buffer = fs.readFileSync(rano)
-thoth.sendMessage(from, buffer, sticker, {quoted: mek})
-fs.unlinkSync(rano)
-})
-await limitAdd(sender)
-break	
-case 'cry':
-ranp = getRandom('.gif')
-rano = getRandom('.webp')
-anu = await fetchJson(`https://tobz-api.herokuapp.com/api/cry?apikey=${apitobz}`, {method: 'get'})
-if (anu.error) return reply(anu.error)
-exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-fs.unlinkSync(ranp)
-if (err) return reply(ind.stikga())
-buffer = fs.readFileSync(rano)
-thoth.sendMessage(from, buffer, sticker, {quoted: mek})
-fs.unlinkSync(rano)
-})
-await limitAdd(sender)
-break			
+break							
 case 'timer':
 if (args[1]=="segundo") {var timer = args[0]+"000"
 } else if (args[1]=="minuto") {var timer = args[0]+"0000"
